@@ -3,6 +3,8 @@ import { CommentService } from "./comment.service";
 
 const createComment = async (req: Request, res: Response) => {
   try {
+    const user = req.user;
+    req.body.authorId = user?.id;
     const result = await CommentService.createComment(req.body);
     res.status(201).json(result);
   } catch (error) {
@@ -13,7 +15,6 @@ const createComment = async (req: Request, res: Response) => {
   }
 };
 
-
 export const CommentController = {
-    createComment
-}
+  createComment,
+};
