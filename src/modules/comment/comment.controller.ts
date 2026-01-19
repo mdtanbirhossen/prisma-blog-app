@@ -28,10 +28,10 @@ const getCommentById = async (req: Request, res: Response) => {
   }
 };
 
-const getCommentByAuthorId = async (req: Request, res: Response) => {
+const getCommentsByAuthorId = async (req: Request, res: Response) => {
   try {
     const { authorId } = req.params;
-    const result = await CommentService.getCommentByAuthorId(
+    const result = await CommentService.getCommentsByAuthorId(
       authorId as string,
     );
     res.status(200).json(result);
@@ -46,5 +46,5 @@ const getCommentByAuthorId = async (req: Request, res: Response) => {
 export const CommentController = {
   createComment,
   getCommentById,
-  getCommentByAuthorId,
+  getCommentsByAuthorId,
 };
