@@ -3,9 +3,10 @@ import { CommentController } from "./comment.controller";
 import { auth, UserRole } from "../../middleware/authentication";
 const router = express.Router();
 
+router.get("/:commentId", CommentController.getCommentById);
 router.post(
   "/",
   auth(UserRole.USER, UserRole.ADMIN),
-  CommentController.createComment
+  CommentController.createComment,
 );
 export const CommentRoutes: Router = router;
