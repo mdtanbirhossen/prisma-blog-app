@@ -28,7 +28,23 @@ const getCommentById = async (req: Request, res: Response) => {
   }
 };
 
+const getCommentByAuthorId = async (req: Request, res: Response) => {
+  try {
+    const { authorId } = req.params;
+    const result = await CommentService.getCommentByAuthorId(
+      authorId as string,
+    );
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({
+      error: "Comment fatched failed",
+      details: error,
+    });
+  }
+};
+
 export const CommentController = {
   createComment,
-  getCommentById
+  getCommentById,
+  getCommentByAuthorId,
 };
